@@ -44,3 +44,10 @@ dotnet add .\BuberDinner.Application\ reference .\BuberDinner.Domain\
 ```dotnetcli
 dotnet add .\BuberDinner.Api\ reference .\BuberDinner.Infrastructure\
 ```
+### Install VSCode Extension
+- REST Client
+
+### Run Web Api
+```dotnetcli
+dotnet run --project .\BuberDinner.Api\
+```
