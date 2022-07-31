@@ -3,7 +3,7 @@
 ##  Contents 
 
 ### Project Architecture
-![image](.\images\architecture.PNG)
+<img src="images/architecture.PNG" />
 
 ### Create project
 ```dotnetcli
