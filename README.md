@@ -37,7 +37,7 @@ dotnet new classlib -o BuberDinner.Domain
     dotnet build
     ```
 
-### Create dependencies between Porjects
+### Create dependencies between Projects
 
 #### Api Add Reference to Contracts, Application
 
