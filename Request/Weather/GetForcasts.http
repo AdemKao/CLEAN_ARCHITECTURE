@@ -1,1 +1,1 @@
-GET https://localhost:7194/WeatherForecast
+GET http://localhost:5124/WeatherForecast
