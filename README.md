@@ -214,3 +214,7 @@ the current folder structure will be down below
 ├── README.md
 ├── Request
 ```
+
+### Create a Register and Login
+
+<img src="images/architecture_4.PNG" />
