@@ -10,9 +10,4 @@ public static class DependencyInjection
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         return services;
     }
-
-
-
-
-
 }

@@ -4,7 +4,7 @@
 - [CLEAN_ARCHITECTURE_DDD](#clean_architecture_ddd)
   - [Contents](#contents)
   - [Source](#source)
-  - [Summary](#summary)
+  - [Part1 Summary](#part1-summary)
   - [Clean Architecture](#clean-architecture)
   - [Project Architecture](#project-architecture)
   - [Project Setup](#project-setup)
@@ -41,6 +41,8 @@
       - [Test endpoints](#test-endpoints)
     - [Setup dependency injection for the application & Infrastructure layers](#setup-dependency-injection-for-the-application--infrastructure-layers)
       - [Create DependencyInjection](#create-dependencyinjection)
+  - [Part2 Summary](#part2-summary)
+    - [Project Architecture](#project-architecture-1)
 
 <hr>
 
@@ -51,7 +53,7 @@
   - REST Client
   - NuGet Reverse Package Search 
 
-## Summary
+## Part1 Summary
 
 - Project Setup
   - Create solution & projects
@@ -448,3 +450,17 @@ public static class DependencyInjection
     }
 }
 ```
+
+<hr>
+
+## Part2 Summary
+  1. Implementing JWT Token Generator
+  2. Using the Options Pattern For Injecting My JWT Settings
+  3. Using `dotnet user-secrets` For Storing Secrets During Development
+  4. Sneak-Peeking Debugging In VScode
+
+<hr>
+
+### Project Architecture
+
+<img src="images/architecture_5.PNG" />
