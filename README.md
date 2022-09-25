@@ -39,12 +39,17 @@
       - [import Application to Api project](#import-application-to-api-project)
       - [add Authentication Service to Services in Program.cs](#add-authentication-service-to-services-in-programcs)
       - [Test endpoints](#test-endpoints)
+    - [Setup dependency injection for the application & Infrastructure layers](#setup-dependency-injection-for-the-application--infrastructure-layers)
+      - [Create DependencyInjection](#create-dependencyinjection)
 
 <hr>
 
 ## Source
 
-https://www.youtube.com/watch?v=ZwQf_JQUUCQ&t=576s
+- YT : https://www.youtube.com/watch?v=ZwQf_JQUUCQ&t=576s
+- extensions:
+  - REST Client
+  - NuGet Reverse Package Search 
 
 ## Summary
 
@@ -412,4 +417,34 @@ Transfer-Encoding: chunked
   "token": "token"
 }
 
+```
+
+### Setup dependency injection for the application & Infrastructure layers
+we want each layer to be in charge of its own dependencies, until now we registered the authentication Service over here in `program.cs`,but actually defined in the `application layer`.And it would be nice if we can just say to the application layer : Listen, I want you to register all your dependencies and same goes for the Infrastructure layer. And then if you have seperate teams for example then each team knows where to look for its dependencies. So in many teams when the project becomes big, you might have an entire team that work only on infrastructure layer.
+
+#### Create DependencyInjection
+for that target, we will create `dependencyInjection.cs` in Application Layer which register the Auth. Here we need to install Microsoft pacakge to handle dependencyInjection.
+
+```bash
+% dotnet add ./BuberDinner.Application/ package Microsoft.Extensions.DependencyInjection.Abstractions
+```
+Then let's move the difinition from the `Program.cs` to `dependencyInjection.cs`
+```cs
+#Program.cs
+//use dependency Injection
+    //builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+    builder.Services
+    .AddApplication()
+    .AddInfrastructure();
+```
+```cs
+#DependencyInjection.cs
+public static class DependencyInjection
+{
+    public static IServiceCollection AddApplication(this IServiceCollection services)
+    {
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
+        return services;
+    }
+}
 ```
