@@ -1,18 +1,66 @@
 # CLEAN_ARCHITECTURE_DDD
 
 ## Contents
+- [CLEAN_ARCHITECTURE_DDD](#clean_architecture_ddd)
+  - [Contents](#contents)
+  - [Source](#source)
+  - [Summary](#summary)
+  - [Clean Architecture](#clean-architecture)
+  - [Project Architecture](#project-architecture)
+  - [Project Setup](#project-setup)
+    - [Create project](#create-project)
+    - [Build project](#build-project)
+    - [Create dependencies between Projects](#create-dependencies-between-projects)
+      - [Api Add Reference to Contracts, Application](#api-add-reference-to-contracts-application)
+      - [Infrastructure Add Reference to Application](#infrastructure-add-reference-to-application)
+      - [Application Add Reference to Domain](#application-add-reference-to-domain)
+      - [Api Add Reference to Infrastructure](#api-add-reference-to-infrastructure)
+      - [Conculsion](#conculsion)
+    - [Build the solution](#build-the-solution)
+    - [Install VSCode Extension And Test](#install-vscode-extension-and-test)
+      - [Run Web Api](#run-web-api)
+      - [Create a new folder Request](#create-a-new-folder-request)
+      - [Conclusion](#conclusion)
+    - [Change BuberDinner.Api's Program.cs](#change-buberdinnerapis-programcs)
+    - [Delete Swashbuckle.AspNetCore in BuberDinner.Api.csproj](#delete-swashbuckleaspnetcore-in-buberdinnerapicsproj)
+    - [Move every ItemGroup -> ProjectReference below down <PropertyGroup> in each project](#move-every-itemgroup---projectreference-below-down-propertygroup-in-each-project)
+    - [Delete Class1.cs in each project](#delete-class1cs-in-each-project)
+    - [run dotnet build to check everything is fine](#run-dotnet-build-to-check-everything-is-fine)
+  - [Auth endpoints](#auth-endpoints)
+    - [Create a Register and Login](#create-a-register-and-login)
+      - [Create a folder which name Docs](#create-a-folder-which-name-docs)
+      - [Create a folder which named Authentication in BuberDinner.Contracts](#create-a-folder-which-named-authentication-in-buberdinnercontracts)
+      - [Create basic code in each .cs files](#create-basic-code-in-each-cs-files)
 
-### Source
+<hr>
+
+## Source
 
 https://www.youtube.com/watch?v=ZwQf_JQUUCQ&t=576s
 
-### Clean Architecture
+## Summary
+
+- Project Setup
+  - Create solution & projects
+  - Define project dependecies
+- Auth endpoints
+  - Create auth endpoints
+  - Model Register, Login requests & responses
+  - Create auth service which returns a mock response
+- Use the 'REST Client' vscode plugin to query the API
+- Setup dependency injection for the application & Infrastructure layers
+<hr>
+
+## Clean Architecture
 
 <img src="images/architecture_2.PNG" />
 
-### Project Architecture
+## Project Architecture
 
 <img src="images/architecture_3.PNG" />
+
+## Project Setup
+
 ### Create project
 
 ```dotnetcli
@@ -214,7 +262,27 @@ the current folder structure will be down below
 ├── README.md
 ├── Request
 ```
-
+## Auth endpoints
 ### Create a Register and Login
 
 <img src="images/architecture_4.PNG" />
+
+#### Create a folder which name Docs
+
+```
+Docs
+└── Api.md
+```
+#### Create a folder which named Authentication in BuberDinner.Contracts
+Then Create `RegisterRequest.cs`, `LoginRequest.cs` and `AuthenticationResponse.cs`
+
+```
+BuberDinner.Contracts
+├── Authentication
+│   ├── AuthenticationResponse.cs
+│   ├── LoginRequest.cs
+│   └── RegisterRequest.cs
+└── BuberDinner.Contracts.csproj
+```
+#### Create basic code in each .cs files
+you can see details in these files
