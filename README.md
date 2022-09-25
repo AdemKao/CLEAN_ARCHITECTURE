@@ -15,17 +15,17 @@
       - [Infrastructure Add Reference to Application](#infrastructure-add-reference-to-application)
       - [Application Add Reference to Domain](#application-add-reference-to-domain)
       - [Api Add Reference to Infrastructure](#api-add-reference-to-infrastructure)
-      - [Conculsion](#conculsion)
     - [Build the solution](#build-the-solution)
+      - [Conculsion](#conculsion)
     - [Install VSCode Extension And Test](#install-vscode-extension-and-test)
       - [Run Web Api](#run-web-api)
       - [Create a new folder Request](#create-a-new-folder-request)
       - [Conclusion](#conclusion)
-    - [Change BuberDinner.Api's Program.cs](#change-buberdinnerapis-programcs)
-    - [Delete Swashbuckle.AspNetCore in BuberDinner.Api.csproj](#delete-swashbuckleaspnetcore-in-buberdinnerapicsproj)
-    - [Move every ItemGroup -> ProjectReference below down <PropertyGroup> in each project](#move-every-itemgroup---projectreference-below-down-propertygroup-in-each-project)
-    - [Delete Class1.cs in each project](#delete-class1cs-in-each-project)
-    - [run dotnet build to check everything is fine](#run-dotnet-build-to-check-everything-is-fine)
+      - [Change BuberDinner.Api's Program.cs](#change-buberdinnerapis-programcs)
+      - [Delete Swashbuckle.AspNetCore in BuberDinner.Api.csproj](#delete-swashbuckleaspnetcore-in-buberdinnerapicsproj)
+      - [Move every ItemGroup -> ProjectReference below down <PropertyGroup> in each project](#move-every-itemgroup---projectreference-below-down-propertygroup-in-each-project)
+      - [Delete Class1.cs in each project](#delete-class1cs-in-each-project)
+      - [run dotnet build to check everything is fine](#run-dotnet-build-to-check-everything-is-fine)
   - [Auth endpoints](#auth-endpoints)
     - [Create a Register and Login](#create-a-register-and-login)
       - [Create a folder which name Docs](#create-a-folder-which-name-docs)
@@ -113,7 +113,11 @@ dotnet add ./BuberDinner.Application/ reference ./BuberDinner.Domain/
 ```dotnetcli
 dotnet add ./BuberDinner.Api/ reference ./BuberDinner.Infrastructure/
 ```
+### Build the solution
 
+```dotnetcli
+ % dotnet build
+```
 #### Conculsion
 
 for now we have five folders in this solution, and also you can see these five projects in `CLEAN_ARCHITECTURE_DDD.sln`
@@ -130,16 +134,7 @@ for now we have five folders in this solution, and also you can see these five p
 ├── Request
 └── images
 ```
-
-to open the _BuberDinner.Api_, you can see the .Net.Sdk.Web in the `.csproj`
-
 <hr>
-
-### Build the solution
-
-```dotnetcli
- % dotnet build
-```
 
 ### Install VSCode Extension And Test
 
@@ -173,7 +168,7 @@ It's a simple tool to test request to your api end point.
 
 <hr>
 
-### Change BuberDinner.Api's Program.cs
+#### Change BuberDinner.Api's Program.cs
 
 for now we don't need these things
 
@@ -181,8 +176,8 @@ for now we don't need these things
 2. builder.Services.AddSwaggerGen();
 3. app.UseAuthorization();
 4. app.UseSwagger();
-5. app.UseSwaggerUI();
-   so the final code will be
+5. app.UseSwaggerUI();  
+so the final code will be
 
 ```cs
 var builder = WebApplication.CreateBuilder(args);
@@ -198,7 +193,7 @@ var app = builder.Build();
 
 ```
 
-### Delete Swashbuckle.AspNetCore in BuberDinner.Api.csproj
+#### Delete Swashbuckle.AspNetCore in BuberDinner.Api.csproj
 
 ```
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -218,11 +213,11 @@ var app = builder.Build();
 </Project>
 ```
 
-### Move every ItemGroup -> ProjectReference below down <PropertyGroup> in each project
+#### Move every ItemGroup -> ProjectReference below down <PropertyGroup> in each project
 
-### Delete Class1.cs in each project
+#### Delete Class1.cs in each project
 
-### run dotnet build to check everything is fine
+#### run dotnet build to check everything is fine
 
 ```
 dotnet build
