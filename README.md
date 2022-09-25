@@ -36,6 +36,9 @@
       - [Run the project](#run-the-project)
       - [Using REST Client to test endpoint](#using-rest-client-to-test-endpoint)
     - [Create auth service which returns a mock response](#create-auth-service-which-returns-a-mock-response)
+      - [import Application to Api project](#import-application-to-api-project)
+      - [add Authentication Service to Services in Program.cs](#add-authentication-service-to-services-in-programcs)
+      - [Test endpoints](#test-endpoints)
 
 <hr>
 
@@ -337,3 +340,76 @@ Content-Type: application/json
 ```
 
 ### Create auth service which returns a mock response
+let's create Application Layer.Here's the final structure.For now we just hard code result.
+```
+BuberDinner.Application
+├── BuberDinner.Application.csproj
+└── Services
+    └── Authentication
+        ├── AuthenticationResult.cs
+        ├── AuthenticationService.cs
+        └── IAuthenticationService.cs
+```
+#### import Application to Api project
+```cs
+using BuberDinner.Contracts.Authentication;
+using BubberDinner.Application.Services.Authentication;
+
+namespace BuberDinner.Api;
+public class AuthenticationController : ControllerBase
+{
+    private readonly IAuthenticationService _authenticationService;
+
+    public AuthenticationController(IAuthenticationService authenticationService)
+    {
+        _authenticationService = authenticationService;
+    }
+}
+```
+#### add Authentication Service to Services in Program.cs
+```cs
+using BubberDinner.Application.Services.Authentication;
+
+var builder = WebApplication.CreateBuilder(args);
+{
+    builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+    builder.Services.AddControllers();
+}
+```
+
+#### Test endpoints
+```bash
+% dotnet run --project BuberDinner.Api
+```
+request
+```
+@host = https://localhost:7107
+
+POST {{host}}/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Adem",
+  "lastName": "Kao",
+  "email": "blocmarc777@gmail.com",
+  "password": "12345"
+}
+```
+response
+```
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: application/json; charset=utf-8
+Date: Sun, 25 Sep 2022 08:20:38 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+{
+  "id": "d8cf4fd0-38f9-4dc6-85e5-a1ba9d0116ab",
+  "firstName": "Adem",
+  "lastName": "Kao",
+  "email": "blocmarc777@gmail.com",
+  "token": "token"
+}
+
+```
