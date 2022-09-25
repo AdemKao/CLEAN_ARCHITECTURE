@@ -27,10 +27,15 @@
       - [Delete Class1.cs in each project](#delete-class1cs-in-each-project)
       - [run dotnet build to check everything is fine](#run-dotnet-build-to-check-everything-is-fine)
   - [Auth endpoints](#auth-endpoints)
-    - [Create a Register and Login](#create-a-register-and-login)
       - [Create a folder which name Docs](#create-a-folder-which-name-docs)
+    - [Model Register, Login requests & responses](#model-register-login-requests--responses)
       - [Create a folder which named Authentication in BuberDinner.Contracts](#create-a-folder-which-named-authentication-in-buberdinnercontracts)
       - [Create basic code in each .cs files](#create-basic-code-in-each-cs-files)
+    - [Create a Register and Login](#create-a-register-and-login)
+      - [Create Auth Controller in BuberDinner.Api](#create-auth-controller-in-buberdinnerapi)
+      - [Run the project](#run-the-project)
+      - [Using REST Client to test endpoint](#using-rest-client-to-test-endpoint)
+    - [Create auth service which returns a mock response](#create-auth-service-which-returns-a-mock-response)
 
 <hr>
 
@@ -258,7 +263,6 @@ the current folder structure will be down below
 ├── Request
 ```
 ## Auth endpoints
-### Create a Register and Login
 
 <img src="images/architecture_4.PNG" />
 
@@ -268,6 +272,7 @@ the current folder structure will be down below
 Docs
 └── Api.md
 ```
+### Model Register, Login requests & responses
 #### Create a folder which named Authentication in BuberDinner.Contracts
 Then Create `RegisterRequest.cs`, `LoginRequest.cs` and `AuthenticationResponse.cs`
 
@@ -281,3 +286,54 @@ BuberDinner.Contracts
 ```
 #### Create basic code in each .cs files
 you can see details in these files
+
+### Create a Register and Login
+
+#### Create Auth Controller in BuberDinner.Api
+- project structure:
+```
+BuberDinner.Api
+├── BuberDinner.Api.csproj
+├── Controllers
+│   ├── AuthenticationController.cs
+│   └── WeatherForecastController.cs
+├── Program.cs
+├── Properties
+│   └── launchSettings.json
+├── WeatherForecast.cs
+├── appsettings.Development.json
+└── appsettings.json
+```
+#### Run the project
+```
+% dotnet run --project ./BuberDinner.Api/
+```
+#### Using REST Client to test endpoint
+create `Login.http` and `Register.http`,you can get response from endpoint witch you build successfully.
+```
+@host = https://localhost:7107
+
+POST {{host}}/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Adem",
+  "lastName": "Kao",
+  "email": "blocmarc777@gmail.com",
+  "password": "12345"
+}
+
+### to add other request
+
+POST {{host}}/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Eri",
+  "lastName": "Kao",
+  "email": "eri222@gmail.com",
+  "password": "12345"
+}
+```
+
+### Create auth service which returns a mock response
